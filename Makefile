@@ -84,6 +84,6 @@ help:
 	$(info make bb-layers-exec BB_ARGS=<args> - execute bitbake-layers with arguments, for other Yocto commands)
 	$(info --------------------------------------------------------------------------------)
 	$(info Bitbake verbosity level can be set by argument VERBOSE [1..4], eg: make VERBOSE=1 ...)
-	$(info Bitbake local.conf file can be set by argument LOCAL_CONF, eg: make LOCAL_CONF=local-minimal.conf ...)
+	$(info Bitbake local.conf file can be set by argument LOCAL_CONF, eg: make LOCAL_CONF=local-minimal-p0.conf ...)
 	$(info Available local.conf: $(LOCAL_CONF_LIST))
 	@exit 0
