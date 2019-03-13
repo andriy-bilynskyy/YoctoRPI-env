@@ -8,9 +8,10 @@ CONF_DIR := $(ENV_DIR)/bb-conf
 
 BBLAYERS_CONF := $(CONF_DIR)/bblayers.conf
 LOCAL_CONF_LIST := $(notdir $(filter-out $(BBLAYERS_CONF),$(wildcard $(CONF_DIR)/*.conf)))
+LOCAL_CONF_DEFAULT := $(word 1,$(LOCAL_CONF_LIST))
 
 ifndef LOCAL_CONF
-  LOCAL_CONF := $(word 1,$(LOCAL_CONF_LIST))
+  LOCAL_CONF := $(LOCAL_CONF_DEFAULT)
 endif
 BBLOCAL_CONF := $(addprefix $(CONF_DIR)/,$(LOCAL_CONF))
 ifeq ("$(wildcard $(BBLOCAL_CONF))","")
@@ -84,6 +85,7 @@ help:
 	$(info make bb-layers-exec BB_ARGS=<args> - execute bitbake-layers with arguments, for other Yocto commands)
 	$(info --------------------------------------------------------------------------------)
 	$(info Bitbake verbosity level can be set by argument VERBOSE [1..4], eg: make VERBOSE=1 ...)
-	$(info Bitbake local.conf file can be set by argument LOCAL_CONF, eg: make LOCAL_CONF=local-minimal-p0.conf ...)
+	$(info Bitbake local.conf file can be set by argument LOCAL_CONF, eg: make LOCAL_CONF=$(LOCAL_CONF_DEFAULT) ...)
 	$(info Available local.conf: $(LOCAL_CONF_LIST))
+	$(info Default local.conf: $(LOCAL_CONF_DEFAULT))
 	@exit 0
